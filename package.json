@@ -33,9 +33,9 @@
   "dependencies": {
     "async": "^2.5.0",
     "bcoin": "bcoin-org/bcoin#886008a1822ce1da7fa8395ee7db4bcc1750a28a",
-    "bitcoind-rpc": "^0.6.0",
-    "btccore-lib": "5.0.0-beta.1",
-    "btccore-p2p": "5.0.0-beta.1",
+    "bitcoind-rpc": "git://github.com/owstack/bitcoind-rpc.git",
+    "btccore-lib": "git://github.com/owstack/btccore-lib.git",
+    "btccore-p2p": "git://github.com/owstack/btccore-p2p.git",
     "bn.js": "^4.11.8",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
