@@ -114,7 +114,7 @@ Edit `btccore-node.json` with something similar to:
   "services": [
     "bitcoind",
     "web",
-    "explorer-api",
+    "btccore-explorer-api",
     "explorer-ui",
     "<additional_service>"
   ],
@@ -129,7 +129,7 @@ Edit `btccore-node.json` with something similar to:
 }
 ```
 
-**Note**: To install services [explorer-api](https://github.com/owstack/explorer-api) and [explorer-ui](https://github.com/owstack/ows-explorer) you'll need to clone the repositories locally.
+**Note**: To install services [btccore-explorer-api](https://github.com/owstack/btccore-explorer-api) and [explorer-ui](https://github.com/owstack/ows-explorer) you'll need to clone the repositories locally.
 
 Setup symlinks for all of the services and dependencies:
 
@@ -137,7 +137,7 @@ Setup symlinks for all of the services and dependencies:
 cd node_modules
 ln -s ~/btccore-lib
 ln -s ~/btccore-node
-ln -s ~/explorer-api
+ln -s ~/btccore-explorer-api
 ln -s ~/explorer-ui
 ```
 

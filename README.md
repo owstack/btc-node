@@ -41,7 +41,7 @@ This will create a directory with configuration files for your node and install 
 
 There are several add-on services available to extend the functionality of Btccore:
 
-- [Explorer API](https://github.com/owstack/explorer-api)
+- [Explorer API](https://github.com/owstack/btccore-explorer-api)
 - [Explorer](https://github.com/owstack/ows-explorer)
 - [Btccore Wallet Service](https://github.com/owstack/btccore-wallet-service)
 

@@ -30,4 +30,4 @@ regtest/data/node3/regtest
 btccore-node.json*
 *.bak
 *.orig
-lib/services/explorer-api
+lib/services/btccore-explorer-api
