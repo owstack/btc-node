@@ -50,7 +50,7 @@ var btccore = {
         'transaction',
         'mempool',
         'web',
-        'explorer-api',
+        'btccore-explorer-api',
         'fee',
         'timestamp'
       ],
@@ -60,7 +60,7 @@ var btccore = {
             { 'ip': { 'v4': '127.0.0.1' }, port: 18444 }
           ]
         },
-        'explorer-api': {
+        'btccore-explorer-api': {
           'routePrefix': 'api'
         }
       }

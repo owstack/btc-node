@@ -22,7 +22,7 @@ Services correspond with a Node.js module as described in 'package.json', for ex
   "dependencies": {
     "btccore-lib": "^0.13.7",
     "btccore-node": "^0.2.0",
-    "explorer-api": "^3.0.0"
+    "btccore-explorer-api": "^3.0.0"
   }
 }
 ```
