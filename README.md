@@ -1,6 +1,10 @@
 Btccore Node
 ============
 
+[![NPM Package](https://img.shields.io/npm/v/btccore-node.svg?style=flat-square)](https://www.npmjs.org/package/btccore-node)
+[![Build Status](https://img.shields.io/travis/owstack/btccore-node.svg?branch=master&style=flat-square)](https://travis-ci.org/owstack/btccore-node)
+[![Coverage Status](https://img.shields.io/coveralls/owstack/btccore-node.svg?style=flat-square)](https://coveralls.io/r/owstack/btccore-node)
+
 A Bitcoin blockchain indexing and query service. Intended to be used with as a Bitcoin full node or in conjunction with a Bitcoin full node.
 
 ## Attribution
