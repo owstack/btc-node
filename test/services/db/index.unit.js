@@ -21,7 +21,7 @@ describe('DB', function() {
       node: {
         services: [],
         datadir: '/tmp',
-        network: 'regtest/btc',
+        network: 'regtest',
         on: sinon.stub()
       }
     });

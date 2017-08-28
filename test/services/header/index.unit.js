@@ -22,7 +22,7 @@ describe('Header Service', function() {
     sandbox = sinon.sandbox.create();
     headerService = new HeaderService({
       node: {
-        getNetworkName: function() { return 'regtest/btc'; },
+        getNetworkName: function() { return 'regtest'; },
         services: []
       }
     });

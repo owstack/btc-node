@@ -18,7 +18,7 @@ describe('Mempool Service', function() {
     sandbox = sinon.sandbox.create();
     mempoolService = new MempoolService({
       node: {
-        getNetworkName: function() { return 'regtest/btc'; },
+        getNetworkName: function() { return 'regtest'; },
         services: []
       }
     });

@@ -41,7 +41,7 @@ var Bitcoin = btccore.services.Bitcoin;
 var Web = btccore.services.Web;
 
 var myNode = new btccore.Node({
-  network: 'regtest/btc'
+  network: 'regtest'
   services: [
     {
       name: 'bitcoind',

@@ -16,7 +16,7 @@ var BcoinBlock = require('bcoin').block;
 var http = require('http');
 
 Networks.enableRegtest();
-var messages = new p2p.Messages({ network: Networks.get('regtest/btc'), Block: BcoinBlock });
+var messages = new p2p.Messages({ network: Networks.get('regtest'), Block: BcoinBlock });
 var server;
 var rawBlocks = require('./data/blocks.json');
 var rawReorgBlocks = require('./data/blocks_reorg.json')[0];
@@ -38,7 +38,7 @@ var btccore = {
   configFile: {
     file: btccoreDataDir + '/btccore-node.json',
     conf: {
-      network: 'regtest/btc',
+      network: 'regtest',
       port: 53001,
       datadir: btccoreDataDir,
       services: [
@@ -50,7 +50,7 @@ var btccore = {
         'transaction',
         'mempool',
         'web',
-        'btccore-explorer-api',
+        'explorer-api',
         'fee',
         'timestamp'
       ],
@@ -60,7 +60,7 @@ var btccore = {
             { 'ip': { 'v4': '127.0.0.1' }, port: 18444 }
           ]
         },
-        'btccore-explorer-api': {
+        'explorer-api': {
           'routePrefix': 'api'
         }
       }
