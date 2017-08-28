@@ -28,7 +28,7 @@ describe('Node', function() {
     });
     it('will set properties', function() {
       var config = {
-        network: 'testnet/btc',
+        network: 'testnet',
         services: [
           {
             name: 'test1',
@@ -42,16 +42,16 @@ describe('Node', function() {
       node._unloadedServices.length.should.equal(1);
       node._unloadedServices[0].name.should.equal('test1');
       node._unloadedServices[0].module.should.equal(TestService);
-      node.network.should.equal('testnet/btc');
+      node.network.should.equal('testnet');
       var node2 = TestNode(config);
       node2._unloadedServices.length.should.equal(1);
       node2._unloadedServices[0].name.should.equal('test1');
       node2._unloadedServices[0].module.should.equal(TestService);
-      node2.network.should.equal('testnet/btc');
+      node2.network.should.equal('testnet');
     });
     it('will set network to testnet', function() {
       var config = {
-        network: 'testnet/btc',
+        network: 'testnet',
         services: [
           {
             name: 'test1',
@@ -62,11 +62,11 @@ describe('Node', function() {
       var TestNode = proxyquire('../lib/node', {});
       TestNode.prototype.start = sinon.spy();
       var node = new TestNode(config);
-      node.network.should.equal('testnet/btc');
+      node.network.should.equal('testnet');
     });
-    it('will set network to regtest/btc', function() {
+    it('will set network to regtest', function() {
       var config = {
-        network: 'regtest/btc',
+        network: 'regtest',
         services: [
           {
             name: 'test1',
@@ -77,7 +77,7 @@ describe('Node', function() {
       var TestNode = proxyquire('../lib/node', {});
       TestNode.prototype.start = sinon.spy();
       var node = new TestNode(config);
-      node.network.should.equal('regtest/btc');
+      node.network.should.equal('regtest');
     });
     it('will be able to disable log formatting', function() {
       var config = {
