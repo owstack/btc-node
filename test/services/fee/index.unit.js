@@ -27,7 +27,7 @@ describe('#Fee Service', function() {
   });
 
   /*
-    Running in regtest/btc mode or unsync'd will return -1
+    Running in regtest mode or unsync'd will return -1
   */
 
   it('Has an estimateFee method', function() {
