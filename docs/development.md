@@ -115,7 +115,7 @@ Edit `btccore-node.json` with something similar to:
     "bitcoind",
     "web",
     "explorer-api",
-    "explorer-ui",
+    "ows-explorer",
     "<additional_service>"
   ],
   "servicesConfig": {

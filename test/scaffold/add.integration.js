@@ -94,8 +94,8 @@ describe('#add', function() {
       var callCount = 0;
       var oldPackage = {
         dependencies: {
-          'btccore-lib': '^v0.13.7',
-          'btccore-node': '^v0.2.0'
+          'btccore-lib': '^v0.0.1',
+          'btccore-node': '^v0.0.1'
         }
       };
       var spawn = sinon.stub().returns({

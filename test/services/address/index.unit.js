@@ -20,7 +20,6 @@ describe('Address Service', function() {
     sandbox = sinon.sandbox.create();
     addressService = new AddressService({
       node: {
-        getNetworkName: function() { return 'regtest'; },
         services: []
       }
     });
@@ -109,20 +108,20 @@ describe('Address Service', function() {
         }
         expect(getTransaction.calledOnce).to.be.true;
         expect(res).to.deep.equal([
-          {
-            __blockhash: 'aa',
-            __height: 123,
-            __inputSatoshis: 1,
-            __inputValues: [
-              1
-            ],
-            __outputSatoshis: 1,
-            outputs: [
-              {
-                value: 1
-              }
-            ]
-          }
+            {
+              __blockhash: 'aa',
+              __height: 123,
+              __inputSatoshis: 1,
+              __inputValues: [
+                1
+              ],
+              __outputSatoshis: 1,
+              outputs: [
+                {
+                  value: 1
+                }
+              ]
+            }
         ]);
         done();
       });
@@ -225,7 +224,7 @@ describe('Address Service', function() {
 
   describe('#onReorg', function() {
 
-  it('should reorg when there is nothing to reorg', function(done ) {
+    it('should reorg when there is nothing to reorg', function(done ) {
 
       var commonAncestorHeader = bcoin.block.fromRaw(blocks[5], 'hex').toHeaders().toJSON();
       var block = bcoin.block.fromRaw(blocks[6], 'hex');
