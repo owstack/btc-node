@@ -19,7 +19,6 @@ describe('Block Service', function() {
     sandbox = sinon.sandbox.create();
     blockService = new BlockService({
       node: {
-        getNetworkName: function() { return 'regtest'; },
         services: []
       }
     });
@@ -57,7 +56,7 @@ describe('Block Service', function() {
 
       blockService._findCommonAncestor('aa', allHeaders, function(err, commonAncestorHashActual, oldBlockList) {
 
-        if (err) {
+        if(err) {
           return done(err);
         }
 
@@ -176,14 +175,12 @@ describe('Block Service', function() {
       var getPrefix = sandbox.stub().callsArgWith(1, null, blockService._encoding);
       var getServiceTip = sandbox.stub().callsArgWith(1, null, { height: 1, hash: 'aa' });
       var setListeners = sandbox.stub(blockService, '_setListeners');
-      var startSub = sandbox.stub(blockService, '_startSubscriptions');
       var setTip = sandbox.stub(blockService, '_setTip');
       blockService._db = { getPrefix: getPrefix, getServiceTip: getServiceTip };
       blockService.start(function() {
         expect(blockService._encoding).to.be.an.instanceof(Encoding);
         expect(getServiceTip.calledOnce).to.be.true;
         expect(getPrefix.calledOnce).to.be.true;
-        expect(startSub.calledOnce).to.be.true;
         expect(setTip.calledOnce).to.be.true;
         done();
       });
