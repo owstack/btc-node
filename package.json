@@ -1,6 +1,6 @@
 {
   "name": "btccore-node",
-  "description": "A bitcioin Full node with extended capabilities using Btccore.",
+  "description": "A bitcoin full node with extended capabilities using Btccore.",
   "engines": {
     "node": ">=8.0.0"
   },
