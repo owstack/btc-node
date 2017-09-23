@@ -124,12 +124,15 @@ Edit `btccore-node.json` with something similar to:
         "datadir": "/home/<youruser>/.bitcoin",
         "exec": "/home/<youruser>/bitcoin/src/bitcoind"
       }
+    },
+    "explorer-api": {
+      "module": "btccore-explorer-api"
     }
   }
 }
 ```
 
-**Note**: To install services [btccore-explorer-api](https://github.com/owstack/btccore-explorer-api) and [explorer-ui](https://github.com/owstack/ows-explorer) you'll need to clone the repositories locally.
+**Note**: To install services [btccore-explorer-api](https://github.com/owstack/btccore-explorer-api) and [ows-explorer](https://github.com/owstack/ows-explorer) you'll need to clone the repositories locally.
 
 Setup symlinks for all of the services and dependencies:
 
@@ -138,7 +141,7 @@ cd node_modules
 ln -s ~/btccore-lib
 ln -s ~/btccore-node
 ln -s ~/btccore-explorer-api
-ln -s ~/explorer-ui
+ln -s ~/ows-explorer
 ```
 
 Make sure that the `<datadir>/bitcoin.conf` has the necessary settings, for example:
