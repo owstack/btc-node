@@ -1,5 +1,3 @@
-## Deprecated - use ows-node repo instead
-
 Btccore Node
 ============
 
@@ -7,57 +5,49 @@ Btccore Node
 [![Build Status](https://img.shields.io/travis/owstack/btccore-node.svg?branch=master&style=flat-square)](https://travis-ci.org/owstack/btccore-node)
 [![Coverage Status](https://img.shields.io/coveralls/owstack/btccore-node.svg?style=flat-square)](https://coveralls.io/r/owstack/btccore-node)
 
-A Bitcoin blockchain indexing and query service. Intended to be used with as a Bitcoin full node or in conjunction with a Bitcoin full node.
-
-## Attribution
-
-This repository was created by copy forking [bitcore-node 3a86782](https://github.com/bitpay/bitcore-node/commit/3a867824d66a96ab26af37fa3b3da2cd16e62f4a).
+A Bitcoin Cash full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services.  Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
 
 ## Install
 
 ```bash
-npm install
-./bin/btccore-node start
+npm install -g btccore-node
+btccore-node start
 ```
-
-Note: A default configuration file is placed in the btccore user's home directory (~/.btccore/btcore-node.json). Or, alternatively, you can copy the provided "btcore-node.json.sample" file to the project's root directory as btccore-node.json and edit it for your preferences. If you don't have a preferred block source (trusted peer), [Bcoin](https://github.com/bcoin-org/bcoin) will be started automatically and synchronized with the mainnet chain.
 
 ## Prerequisites
 
-- Node.js v8.2.0+
-- ~500GB of disk storage
-- ~4GB of RAM
+- GNU/Linux x86_32/x86_64, or OSX 64bit *(for bitcoind distributed binaries)*
+- Node.js v0.10, v0.12 or v4
+- ZeroMQ *(libzmq3-dev for Ubuntu/Debian or zeromq on OSX)*
+- ~200GB of disk storage
+- ~8GB of RAM
 
 ## Configuration
 
-The main configuration file is called "btccore-node.json". This file instructs btccore-node for the following options:
+Btccore includes a Command Line Interface (CLI) for managing, configuring and interfacing with your Btccore Node.
 
-- location of database files (datadir)
-- tcp port for web services, if configured (port)
-- bitcoin network type (e.g. mainnet, testnet3, regtest), (network)
-- what services to include (services)
-- the services' configuration (servicesConfig)
+```bash
+btccore-node create -d <bitcoin-data-dir> mynode
+cd mynode
+btccore-node install <service>
+btccore-node install https://github.com/yourname/helloworld
+```
+
+This will create a directory with configuration files for your node and install the necessary dependencies. For more information about (and developing) services, please see the [Service Documentation](docs/services.md).
 
 ## Add-on Services
 
 There are several add-on services available to extend the functionality of Btccore:
 
 - [Explorer API](https://github.com/owstack/btccore-explorer-api)
-- [Explorer](https://github.com/owstack/ows-explorer)
+- [OWS Explorer](https://github.com/owstack/ows-explorer)
 - [Btccore Wallet Service](https://github.com/owstack/btccore-wallet-service)
 
 ## Documentation
 
+- [Upgrade Notes](docs/upgrade.md)
 - [Services](docs/services.md)
-  - [Fee](docs/services/fee.md) - Creates a service to handle fee queries
-  - [Header](docs/services/header.md) - Creates a service to handle block headers
-  - [Block](docs/services/block.md) - Creates a service to handle blocks
-  - [Transaction](docs/services/transaction.md) - Creates a service to handle transactions
-  - [Address](docs/services/address.md) - Creates a service to handle addresses
-  - [Mempool](docs/services/mempool.md) - Creates a service to handle mempool
-  - [Timestamp](docs/services/timestamp.md) - Creates a service to handle timestamp
-  - [Db](docs/services/db.md) - Creates a service to handle the database
-  - [p2p](docs/services/p2p.md) - Creates a service to handle the peer-to-peer network
+  - [Bitcoind](docs/services/bitcoind.md) - Interface to Bitcoin Core
   - [Web](docs/services/web.md) - Creates an express application over which services can expose their web/API content
 - [Development Environment](docs/development.md) - Guide for setting up a development environment
 - [Node](docs/node.md) - Details on the node constructor
@@ -72,4 +62,6 @@ Please send pull requests for bug fixes, code optimization, and ideas for improv
 
 Code released under [the MIT license](https://github.com/owstack/btccore-node/blob/master/LICENSE).
 
-Copyright 2017 Open Wallet Stack.
+Copyright 2017 Open Wallet Stack
+
+- bitcoin: Copyright (c) 2009-2015 Bitcoin Core Developers (MIT License)
