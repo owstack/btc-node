@@ -28,6 +28,7 @@
   "dependencies": {
     "async": "^1.3.0",
     "bitcoind-rpc": "https://github.com/owstack/bitcoind-rpc",
+    "btccore-explorer-api": "https://github.com/owstack/btccore-explorer-api.git",
     "btccore-lib": "https://github.com/owstack/btccore-lib",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
