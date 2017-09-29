@@ -10,9 +10,9 @@ var p2p = require('btc-p2p');
 var Peer = p2p.Peer;
 var Messages = p2p.Messages;
 var chai = require('chai');
-var btc = require('btc-lib');
-var Transaction = btc.Transaction;
-var BN = btc.crypto.BN;
+var btcLib = require('btc-lib');
+var Transaction = btcLib.Transaction;
+var BN = btcLib.crypto.BN;
 var async = require('async');
 var rimraf = require('rimraf');
 var bitcoind;
@@ -29,9 +29,9 @@ var client;
 var messages;
 var peer;
 var coinbasePrivateKey;
-var privateKey = btc.PrivateKey();
-var destKey = btc.PrivateKey();
-var BufferUtil = btc.util.buffer;
+var privateKey = btcLib.PrivateKey();
+var destKey = btcLib.PrivateKey();
+var BufferUtil = btcLib.util.buffer;
 var blocks;
 
 describe('P2P Functionality', function() {
@@ -40,8 +40,8 @@ describe('P2P Functionality', function() {
     this.timeout(100000);
 
     // enable regtest
-    btc.Networks.enableRegtest();
-    var regtestNetwork = btc.Networks.get('regtest');
+    btcLib.Networks.enableRegtest();
+    var regtestNetwork = btcLib.Networks.get('regtest');
     var datadir = __dirname + '/data';
 
     rimraf(datadir + '/regtest', function(err) {
@@ -55,7 +55,7 @@ describe('P2P Functionality', function() {
           exec: path.resolve(__dirname, '../bin/bitcoind')
         },
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         }
       });
 
@@ -130,11 +130,11 @@ describe('P2P Functionality', function() {
                         throw err;
                       }
                       utxo.privateKeyWIF = privresponse.result;
-                      var tx = btc.Transaction();
+                      var tx = btcLib.Transaction();
                       tx.from(utxo);
                       tx.change(privateKey.toAddress());
                       tx.to(destKey.toAddress(), utxo.amount * 1e8 - 1000);
-                      tx.sign(btc.PrivateKey.fromWIF(utxo.privateKeyWIF));
+                      tx.sign(btcLib.PrivateKey.fromWIF(utxo.privateKeyWIF));
                       txs.push(tx);
                       finished();
                     });

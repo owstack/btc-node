@@ -33,12 +33,12 @@ _Note:_ If you already have a btc-node database, and you want to query data from
 If, instead, you would like to run a custom node, you can include services by including them in your configuration object when initializing a new node.
 
 ```js
-//Require btc
-var btc = require('btc-node');
+//Require btcNode
+var btcNode = require('btc-node');
 
 //Services
-var Bitcoin = btc.services.Bitcoin;
-var Web = btc.services.Web;
+var Bitcoin = btcNode.services.Bitcoin;
+var Web = btcNode.services.Web;
 
 var myNode = new btc.Node({
   network: 'regtest'

@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-var btc = require('../lib/cli/btc');
-btc();
+var btcnode = require('../lib/cli/btcnode');
+btcnode();

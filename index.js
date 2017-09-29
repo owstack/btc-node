@@ -21,7 +21,7 @@ module.exports.scaffold.defaultConfig = require('./lib/scaffold/default-config')
 module.exports.cli = {};
 module.exports.cli.main = require('./lib/cli/main');
 module.exports.cli.daemon = require('./lib/cli/daemon');
-module.exports.cli.btc = require('./lib/cli/btc');
-module.exports.cli.btcd = require('./lib/cli/btcd');
+module.exports.cli.btcnode = require('./lib/cli/btcnode');
+module.exports.cli.btcnoded = require('./lib/cli/btcnoded');
 
 module.exports.lib = require('btc-lib');

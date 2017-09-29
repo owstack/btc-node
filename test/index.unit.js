@@ -4,9 +4,9 @@ var should = require('chai').should();
 
 describe('Index Exports', function() {
   it('will export btc-lib', function() {
-    var btc = require('../');
-    should.exist(btc.lib);
-    should.exist(btc.lib.Transaction);
-    should.exist(btc.lib.Block);
+    var btcLib = require('../');
+    should.exist(btcLib.lib);
+    should.exist(btcLib.lib.Transaction);
+    should.exist(btcLib.lib.Block);
   });
 });

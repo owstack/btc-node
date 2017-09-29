@@ -6,8 +6,8 @@ var path = require('path');
 var EventEmitter = require('events').EventEmitter;
 var should = require('chai').should();
 var crypto = require('crypto');
-var btc = require('btc-lib');
-var _ = btc.deps._;
+var btcLib = require('btc-lib');
+var _ = btcLib.deps._;
 var sinon = require('sinon');
 var proxyquire = require('proxyquire');
 var fs = require('fs');
@@ -17,7 +17,7 @@ var index = require('../../lib');
 var log = index.log;
 var errors = index.errors;
 
-var Transaction = btc.Transaction;
+var Transaction = btcLib.Transaction;
 var readFileSync = sinon.stub().returns(fs.readFileSync(path.resolve(__dirname, '../data/bitcoin.conf')));
 var BitcoinService = proxyquire('../../lib/services/bitcoind', {
   fs: {
@@ -31,7 +31,7 @@ describe('Bitcoin Service', function() {
 
   var baseConfig = {
     node: {
-      network: btc.Networks.testnet
+      network: btcLib.Networks.testnet
     },
     spawn: {
       datadir: 'testdir',
@@ -406,7 +406,7 @@ describe('Bitcoin Service', function() {
       });
       var config = {
         node: {
-          network: btc.Networks.testnet,
+          network: btcLib.Networks.testnet,
           configPath: '/tmp/.btc/btc-node.json'
         },
         spawn: {
@@ -433,7 +433,7 @@ describe('Bitcoin Service', function() {
       var bitcoind = new TestBitcoin(baseConfig);
       (function() {
         bitcoind._loadSpawnConfiguration({datadir: './test'});
-      }).should.throw(btc.errors.InvalidState);
+      }).should.throw(btcLib.errors.InvalidState);
     });
     it('should NOT set https options if node https options are set', function() {
       var writeFileSync = function(path, config) {
@@ -755,13 +755,13 @@ describe('Bitcoin Service', function() {
 
   describe('#_getDefaultConf', function() {
     afterEach(function() {
-      btc.Networks.disableRegtest();
-      baseConfig.node.network = btc.Networks.testnet;
+      btcLib.Networks.disableRegtest();
+      baseConfig.node.network = btcLib.Networks.testnet;
     });
     it('will get default rpc port for livenet', function() {
       var config = {
         node: {
-          network: btc.Networks.livenet
+          network: btcLib.Networks.livenet
         },
         spawn: {
           datadir: 'testdir',
@@ -774,7 +774,7 @@ describe('Bitcoin Service', function() {
     it('will get default rpc port for testnet', function() {
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -785,10 +785,10 @@ describe('Bitcoin Service', function() {
       bitcoind._getDefaultConf().rpcport.should.equal(18332);
     });
     it('will get default rpc port for regtest', function() {
-      btc.Networks.enableRegtest();
+      btcLib.Networks.enableRegtest();
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -802,13 +802,13 @@ describe('Bitcoin Service', function() {
 
   describe('#_getNetworkConfigPath', function() {
     afterEach(function() {
-      btc.Networks.disableRegtest();
-      baseConfig.node.network = btc.Networks.testnet;
+      btcLib.Networks.disableRegtest();
+      baseConfig.node.network = btcLib.Networks.testnet;
     });
     it('will get default config path for livenet', function() {
       var config = {
         node: {
-          network: btc.Networks.livenet
+          network: btcLib.Networks.livenet
         },
         spawn: {
           datadir: 'testdir',
@@ -821,7 +821,7 @@ describe('Bitcoin Service', function() {
     it('will get default rpc port for testnet', function() {
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -832,10 +832,10 @@ describe('Bitcoin Service', function() {
       bitcoind._getNetworkConfigPath().should.equal('testnet3/bitcoin.conf');
     });
     it('will get default rpc port for regtest', function() {
-      btc.Networks.enableRegtest();
+      btcLib.Networks.enableRegtest();
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -849,24 +849,24 @@ describe('Bitcoin Service', function() {
 
   describe('#_getNetworkOption', function() {
     afterEach(function() {
-      btc.Networks.disableRegtest();
-      baseConfig.node.network = btc.Networks.testnet;
+      btcLib.Networks.disableRegtest();
+      baseConfig.node.network = btcLib.Networks.testnet;
     });
     it('return --testnet for testnet', function() {
       var bitcoind = new BitcoinService(baseConfig);
-      bitcoind.node.network = btc.Networks.testnet;
+      bitcoind.node.network = btcLib.Networks.testnet;
       bitcoind._getNetworkOption().should.equal('--testnet');
     });
     it('return --regtest for testnet', function() {
       var bitcoind = new BitcoinService(baseConfig);
-      bitcoind.node.network = btc.Networks.testnet;
-      btc.Networks.enableRegtest();
+      bitcoind.node.network = btcLib.Networks.testnet;
+      btcLib.Networks.enableRegtest();
       bitcoind._getNetworkOption().should.equal('--regtest');
     });
     it('return undefined for livenet', function() {
       var bitcoind = new BitcoinService(baseConfig);
-      bitcoind.node.network = btc.Networks.livenet;
-      btc.Networks.enableRegtest();
+      bitcoind.node.network = btcLib.Networks.livenet;
+      btcLib.Networks.enableRegtest();
       should.equal(bitcoind._getNetworkOption(), undefined);
     });
   });
@@ -1057,7 +1057,7 @@ describe('Bitcoin Service', function() {
     it('will not call syncPercentage if node is stopping', function(done) {
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -1086,17 +1086,17 @@ describe('Bitcoin Service', function() {
   });
 
   describe('#_getAddressesFromTransaction', function() {
-    it('will get results using btc.Transaction', function() {
+    it('will get results using btcLib.Transaction', function() {
       var bitcoind = new BitcoinService(baseConfig);
       var wif = 'L2Gkw3kKJ6N24QcDuH4XDqt9cTqsKTVNDGz1CRZhk9cq4auDUbJy';
-      var privkey = btc.PrivateKey.fromWIF(wif);
-      var inputAddress = privkey.toAddress(btc.Networks.testnet);
-      var outputAddress = btc.Address('2N2JD6wb56AfK4tfmM6PwdVmoYk2dCKf4Br');
-      var tx = btc.Transaction();
+      var privkey = btcLib.PrivateKey.fromWIF(wif);
+      var inputAddress = privkey.toAddress(btcLib.Networks.testnet);
+      var outputAddress = btcLib.Address('2N2JD6wb56AfK4tfmM6PwdVmoYk2dCKf4Br');
+      var tx = btcLib.Transaction();
       tx.from({
         txid: '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b',
         outputIndex: 0,
-        script: btc.Script(inputAddress),
+        script: btcLib.Script(inputAddress),
         address: inputAddress.toString(),
         satoshis: 5000000000
       });
@@ -1109,18 +1109,18 @@ describe('Bitcoin Service', function() {
     });
     it('will handle non-standard script types', function() {
       var bitcoind = new BitcoinService(baseConfig);
-      var tx = btc.Transaction();
-      tx.addInput(btc.Transaction.Input({
+      var tx = btcLib.Transaction();
+      tx.addInput(btcLib.Transaction.Input({
         prevTxId: '4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b',
-        script: btc.Script('OP_TRUE'),
+        script: btcLib.Script('OP_TRUE'),
         outputIndex: 1,
         output: {
-          script: btc.Script('OP_TRUE'),
+          script: btcLib.Script('OP_TRUE'),
           satoshis: 5000000000
         }
       }));
-      tx.addOutput(btc.Transaction.Output({
-        script: btc.Script('OP_TRUE'),
+      tx.addOutput(btcLib.Transaction.Output({
+        script: btcLib.Script('OP_TRUE'),
         satoshis: 5000000000
       }));
       var addresses = bitcoind._getAddressesFromTransaction(tx);
@@ -1128,8 +1128,8 @@ describe('Bitcoin Service', function() {
     });
     it('will handle unparsable script types or missing input script', function() {
       var bitcoind = new BitcoinService(baseConfig);
-      var tx = btc.Transaction();
-      tx.addOutput(btc.Transaction.Output({
+      var tx = btcLib.Transaction();
+      tx.addOutput(btcLib.Transaction.Output({
         script: new Buffer('4c', 'hex'),
         satoshis: 5000000000
       }));
@@ -1138,14 +1138,14 @@ describe('Bitcoin Service', function() {
     });
     it('will return unique values', function() {
       var bitcoind = new BitcoinService(baseConfig);
-      var tx = btc.Transaction();
-      var address = btc.Address('2N2JD6wb56AfK4tfmM6PwdVmoYk2dCKf4Br');
-      tx.addOutput(btc.Transaction.Output({
-        script: btc.Script(address),
+      var tx = btcLib.Transaction();
+      var address = btcLib.Address('2N2JD6wb56AfK4tfmM6PwdVmoYk2dCKf4Br');
+      tx.addOutput(btcLib.Transaction.Output({
+        script: btcLib.Script(address),
         satoshis: 5000000000
       }));
-      tx.addOutput(btc.Transaction.Output({
-        script: btc.Script(address),
+      tx.addOutput(btcLib.Transaction.Output({
+        script: btcLib.Script(address),
         satoshis: 5000000000
       }));
       var addresses = bitcoind._getAddressesFromTransaction(tx);
@@ -1289,7 +1289,7 @@ describe('Bitcoin Service', function() {
     it('it will clear interval if node is stopping', function(done) {
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -1697,7 +1697,7 @@ describe('Bitcoin Service', function() {
     it('will exit spawn if shutdown', function() {
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -1816,7 +1816,7 @@ describe('Bitcoin Service', function() {
       });
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -1921,7 +1921,7 @@ describe('Bitcoin Service', function() {
     it('will give error if connecting while shutting down', function(done) {
       var config = {
         node: {
-          network: btc.Networks.testnet
+          network: btcLib.Networks.testnet
         },
         spawn: {
           datadir: 'testdir',
@@ -3260,8 +3260,8 @@ describe('Bitcoin Service', function() {
   describe('#_getAddressStrings', function() {
     it('will get address strings from btc addresses', function() {
       var addresses = [
-        btc.Address('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i'),
-        btc.Address('3CMNFxN1oHBc4R1EpboAL5yzHGgE611Xou'),
+        btcLib.Address('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i'),
+        btcLib.Address('3CMNFxN1oHBc4R1EpboAL5yzHGgE611Xou'),
       ];
       var bitcoind = new BitcoinService(baseConfig);
       var strings = bitcoind._getAddressStrings(addresses);
@@ -3280,7 +3280,7 @@ describe('Bitcoin Service', function() {
     });
     it('will get address strings from mixture of types', function() {
       var addresses = [
-        btc.Address('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i'),
+        btcLib.Address('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i'),
         '3CMNFxN1oHBc4R1EpboAL5yzHGgE611Xou',
       ];
       var bitcoind = new BitcoinService(baseConfig);
@@ -3290,7 +3290,7 @@ describe('Bitcoin Service', function() {
     });
     it('will give error with unknown', function() {
       var addresses = [
-        btc.Address('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i'),
+        btcLib.Address('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i'),
         0,
       ];
       var bitcoind = new BitcoinService(baseConfig);
@@ -3813,7 +3813,7 @@ describe('Bitcoin Service', function() {
         should.not.exist(err);
         getBlock.args[0][0].should.equal('00000000050a6d07f583beba2d803296eb1e9d4980c4a20f206c584e89a4f02b');
         getBlock.args[0][1].should.equal(false);
-        block.should.be.instanceof(btc.Block);
+        block.should.be.instanceof(btcLib.Block);
         done();
       });
     });
@@ -3835,7 +3835,7 @@ describe('Bitcoin Service', function() {
         getBlock.callCount.should.equal(1);
         getBlock.args[0][0].should.equal('00000000050a6d07f583beba2d803296eb1e9d4980c4a20f206c584e89a4f02b');
         getBlock.args[0][1].should.equal(false);
-        block.should.be.instanceof(btc.Block);
+        block.should.be.instanceof(btcLib.Block);
         done();
       });
     });
@@ -3856,12 +3856,12 @@ describe('Bitcoin Service', function() {
         should.not.exist(err);
         getBlockHash.callCount.should.equal(0);
         getBlock.callCount.should.equal(1);
-        block.should.be.instanceof(btc.Block);
+        block.should.be.instanceof(btcLib.Block);
         bitcoind.getBlock(hash, function(err, block) {
           should.not.exist(err);
           getBlockHash.callCount.should.equal(0);
           getBlock.callCount.should.equal(1);
-          block.should.be.instanceof(btc.Block);
+          block.should.be.instanceof(btcLib.Block);
           done();
         });
       });
@@ -3884,12 +3884,12 @@ describe('Bitcoin Service', function() {
         should.not.exist(err);
         getBlockHash.callCount.should.equal(1);
         getBlock.callCount.should.equal(1);
-        block.should.be.instanceof(btc.Block);
+        block.should.be.instanceof(btcLib.Block);
         bitcoind.getBlock(0, function(err, block) {
           should.not.exist(err);
           getBlockHash.callCount.should.equal(2);
           getBlock.callCount.should.equal(1);
-          block.should.be.instanceof(btc.Block);
+          block.should.be.instanceof(btcLib.Block);
           done();
         });
       });
@@ -4306,7 +4306,7 @@ describe('Bitcoin Service', function() {
   });
 
   describe('#sendTransaction', function(done) {
-    var tx = btc.Transaction(txhex);
+    var tx = btcLib.Transaction(txhex);
     it('will give rpc error', function() {
       var bitcoind = new BitcoinService(baseConfig);
       var sendRawTransaction = sinon.stub().callsArgWith(2, {message: 'error', code: -1});
@@ -4364,7 +4364,7 @@ describe('Bitcoin Service', function() {
           sendRawTransaction: sendRawTransaction
         }
       });
-      var transaction = btc.Transaction();
+      var transaction = btcLib.Transaction();
       (function() {
         bitcoind.sendTransaction(transaction);
       }).should.throw(Error);
@@ -4486,7 +4486,7 @@ describe('Bitcoin Service', function() {
           return done(err);
         }
         should.exist(tx);
-        tx.should.be.an.instanceof(btc.Transaction);
+        tx.should.be.an.instanceof(btcLib.Transaction);
         done();
       });
     });
@@ -4505,11 +4505,11 @@ describe('Bitcoin Service', function() {
           return done(err);
         }
         should.exist(tx);
-        tx.should.be.an.instanceof(btc.Transaction);
+        tx.should.be.an.instanceof(btcLib.Transaction);
 
         bitcoind.getTransaction('txid', function(err, tx) {
           should.exist(tx);
-          tx.should.be.an.instanceof(btc.Transaction);
+          tx.should.be.an.instanceof(btcLib.Transaction);
           getRawTransaction.callCount.should.equal(1);
           done();
         });
