@@ -2,8 +2,8 @@
 
 var should = require('chai').should();
 var sinon = require('sinon');
-var btc = require('btc-lib');
-var Networks = btc.Networks;
+var btcLib = require('btc-lib');
+var Networks = btcLib.Networks;
 var proxyquire = require('proxyquire');
 var util = require('util');
 var BaseService = require('../lib/service');
@@ -429,7 +429,7 @@ describe('Btc Node', function() {
 
   describe('#getNetworkName', function() {
     afterEach(function() {
-      btc.Networks.disableRegtest();
+      btcLib.Networks.disableRegtest();
     });
     it('it will return the network name for livenet', function() {
       var node = new Node(baseConfig);

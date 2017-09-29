@@ -1,6 +1,6 @@
 {
   "name": "btc-node",
-  "description": "Bitcoin Core full node with extended capabilities using Btc.",
+  "description": "Bitcoin Core full node with extended capabilities.",
   "version": "0.0.1",
   "main": "./index.js",
   "repository": "git://github.com/owstack/btc-node.git",
