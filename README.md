@@ -11,7 +11,7 @@ A Bitcoin Cash full node for building applications and services with Node.js. A 
 
 ```bash
 npm install -g btc-node
-btc-node start
+btcnode start
 ```
 
 ## Prerequisites
@@ -27,10 +27,10 @@ btc-node start
 Btc-node includes a Command Line Interface (CLI) for managing, configuring and interfacing with your Btc Node.
 
 ```bash
-btc-node create -d <bitcoin-data-dir> mynode
+btcnode create -d <bitcoin-data-dir> mynode
 cd mynode
-btc-node install <service>
-btc-node install https://github.com/yourname/helloworld
+btcnode install <service>
+btcnode install https://github.com/yourname/helloworld
 ```
 
 This will create a directory with configuration files for your node and install the necessary dependencies. For more information about (and developing) services, please see the [Service Documentation](docs/services.md).

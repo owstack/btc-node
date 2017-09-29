@@ -9,7 +9,7 @@ RUN useradd --user-group --create-home --shell /bin/false ows
 
 # Setup environment variables
 ENV NODE_ENV=production
-ENV PKG_NAME=btc-node
+ENV PKG_NAME=btcnode
 ENV APP_NAME=bitcoin-core-services
 ENV HOME_PATH=/home/ows
 ENV BITCOIN_DATA=/data
