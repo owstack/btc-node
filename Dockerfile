@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8.1
 
 # update apt-get
 RUN apt-get update && apt-get install -y dnsutils
@@ -32,6 +32,7 @@ RUN $PKG_NAME create -d $BITCOIN_DATA $APP_NAME
 
 WORKDIR $APP_DIR
 RUN $PKG_NAME install https://github.com/owstack/btc-explorer-api.git
+RUN rm package-lock.json
 RUN $PKG_NAME install https://github.com/owstack/btc-wallet-service.git
 
 USER root
