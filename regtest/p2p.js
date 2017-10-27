@@ -6,11 +6,11 @@ var path = require('path');
 var index = require('..');
 var log = index.log;
 
-var p2p = require('btc-p2p');
+var p2p = require('@owstack/btc-p2p');
 var Peer = p2p.Peer;
 var Messages = p2p.Messages;
 var chai = require('chai');
-var btcLib = require('btc-lib');
+var btcLib = require('@owstack/btc-lib');
 var Transaction = btcLib.Transaction;
 var BN = btcLib.crypto.BN;
 var async = require('async');

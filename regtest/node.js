@@ -9,7 +9,7 @@ var log = index.log;
 log.debug = function() {};
 
 var chai = require('chai');
-var btcLib = require('btc-lib');
+var btcLib = require('@owstack/btc-lib');
 var rimraf = require('rimraf');
 var node;
 

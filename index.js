@@ -24,4 +24,4 @@ module.exports.cli.daemon = require('./lib/cli/daemon');
 module.exports.cli.btcnode = require('./lib/cli/btcnode');
 module.exports.cli.btcnoded = require('./lib/cli/btcnoded');
 
-module.exports.lib = require('btc-lib');
+module.exports.lib = require('@owstack/btc-lib');

@@ -20,9 +20,9 @@ Services correspond with a Node.js module as described in 'package.json', for ex
 ```json
 {
   "dependencies": {
-    "btc-lib": "^0.13.7",
-    "btc-node": "^0.2.0",
-    "btc-explorer-api": "^3.0.0"
+    "@owstack/btc-lib": "^0.13.7",
+    "@owstack/btc-node": "^0.2.0",
+    "@owstack/btc-explorer-api": "^3.0.0"
   }
 }
 ```
@@ -34,7 +34,7 @@ If, instead, you would like to run a custom node, you can include services by in
 
 ```js
 //Require btcNode
-var btcNode = require('btc-node');
+var btcNode = require('@owstack/btc-node');
 
 //Services
 var Bitcoin = btcNode.services.Bitcoin;
