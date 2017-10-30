@@ -1,7 +1,7 @@
 {
   "name": "@owstack/btc-node",
   "description": "Bitcoin Core full node with extended capabilities.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./index.js",
   "repository": "git://github.com/owstack/btc-node.git",
   "homepage": "https://github.com/owstack/btc-node",
@@ -23,10 +23,10 @@
     "bitcoind"
   ],
   "dependencies": {
-    "async": "^2.5.0",
     "@owstack/bitcoind-rpc": "^0.0.1",
-    "@owstack/btc-explorer-api": "^0.0.2",
-    "@owstack/btc-lib": "^0.0.2",
+    "@owstack/btc-explorer-api": "^0.0.3",
+    "@owstack/btc-lib": "^0.0.3",
+    "async": "^2.5.0",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
     "commander": "^2.8.1",
@@ -46,8 +46,8 @@
     "utf-8-validate": "~3.0.3"
   },
   "devDependencies": {
+    "@owstack/btc-p2p": "^0.0.3",
     "benchmark": "2.1.4",
-    "@owstack/btc-p2p": "^0.0.2",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
     "istanbul": "^0.4.3",
