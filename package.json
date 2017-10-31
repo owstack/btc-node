@@ -1,7 +1,7 @@
 {
   "name": "@owstack/btc-node",
   "description": "Bitcoin Core full node with extended capabilities.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./index.js",
   "repository": "git://github.com/owstack/btc-node.git",
   "homepage": "https://github.com/owstack/btc-node",
@@ -46,7 +46,7 @@
     "utf-8-validate": "~3.0.3"
   },
   "devDependencies": {
-    "@owstack/btc-p2p": "^0.0.3",
+    "@owstack/btc-p2p": "^0.0.4",
     "benchmark": "2.1.4",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
