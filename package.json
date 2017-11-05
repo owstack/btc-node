@@ -24,7 +24,6 @@
   ],
   "dependencies": {
     "@owstack/bitcoind-rpc": "^0.0.1",
-    "@owstack/btc-explorer-api": "^0.0.3",
     "@owstack/btc-lib": "^0.0.3",
     "async": "^2.5.0",
     "body-parser": "^1.13.3",
