@@ -34,6 +34,8 @@ WORKDIR $APP_DIR
 RUN $PKG_NAME install @owstack/btc-explorer-api
 RUN rm package-lock.json
 RUN $PKG_NAME install @owstack/btc-wallet-service
+RUN rm package-lock.json
+RUN $PKG_NAME install @owstack/ows-explorer
 
 USER root
 CMD ["btcnode","start"]
