@@ -25,15 +25,16 @@ WORKDIR $PKG_DIR
 RUN chown -R ows:ows $HOME_PATH && chgrp ows /usr/local/lib/node_modules && chgrp ows /usr/local/bin
 
 USER ows
-RUN npm install -g @owstack/btc-node@0.0.13
+RUN npm install -g @owstack/btc-node@0.0.15
 
 WORKDIR $HOME_PATH
 RUN $PKG_NAME create -d $BITCOIN_DATA $APP_NAME
 
 WORKDIR $APP_DIR
-RUN $PKG_NAME install @owstack/btc-explorer-api@0.0.4
-RUN $PKG_NAME install @owstack/btc-wallet-service@0.0.7
+RUN $PKG_NAME install @owstack/btc-explorer-api@0.0.5
+RUN $PKG_NAME install @owstack/btc-wallet-service@0.0.9
 RUN $PKG_NAME install @owstack/ows-explorer@0.0.3
+RUN $PKG_NAME install @owstack/ows-elastic-sync@1.0.1
 
 USER root
 CMD ["btcnode","start"]
