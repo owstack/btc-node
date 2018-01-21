@@ -34,7 +34,7 @@ WORKDIR $APP_DIR
 RUN $PKG_NAME install @owstack/btc-explorer-api@0.0.5
 RUN $PKG_NAME install @owstack/btc-wallet-service@0.0.9
 RUN $PKG_NAME install @owstack/ows-explorer@0.0.3
-RUN $PKG_NAME install @owstack/ows-elastic-sync@1.0.1
+RUN $PKG_NAME install @owstack/ows-elastic-sync@1.0.2
 
 USER root
 CMD ["btcnode","start"]
