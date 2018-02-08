@@ -37,4 +37,4 @@ RUN $PKG_NAME install @owstack/ows-explorer@0.0.3
 RUN $PKG_NAME install @owstack/ows-elastic-sync@1.0.3
 
 USER root
-CMD ["btcnode","start"]
+CMD ["btcnode", "start", "-c", "/home/ows/config", "-m", "/home/ows/bitcoin-core-services"]
