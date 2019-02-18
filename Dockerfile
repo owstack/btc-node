@@ -31,7 +31,7 @@ WORKDIR $HOME_PATH
 RUN $PKG_NAME create -d $BITCOIN_DATA $APP_NAME
 
 WORKDIR $APP_DIR
-RUN $PKG_NAME install @owstack/btc-explorer-api@0.0.5
+RUN $PKG_NAME install @owstack/btc-explorer-api@0.0.6
 RUN $PKG_NAME install @owstack/btc-wallet-service@0.0.9
 RUN $PKG_NAME install @owstack/ows-explorer@0.0.3
 
